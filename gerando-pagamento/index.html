@@ -353,17 +353,29 @@
       setTimeout(function () { msg.textContent = 'Gerando código de pagamento'; }, 2400);
 
       setTimeout(function () {
-        var gatewayBase = 'https://pay.sunize.com.br/cYyEgsqY?';
-        var urlParams = new URLSearchParams(window.location.search);
-        var utmKeys = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term', 'xcod', 'src', 'fbclid', 'sck', 'subid'];
-        var q = new URLSearchParams();
-        utmKeys.forEach(function (k) {
-          var v = urlParams.get(k) || localStorage.getItem(k) || '';
-          if (v) q.set(k, v);
-        });
-        var qs = q.toString();
-        window.location.href = gatewayBase + (qs ? '?' + qs : '');
-      }, 1);
+  var gatewayBase = 'https://pay.sunize.com.br/cYyEgsqY';
+  var urlParams = new URLSearchParams(window.location.search);
+  var utmKeys = [
+    'utm_source', 'utm_campaign', 'utm_medium', 'utm_content',
+    'utm_term', 'xcod', 'src', 'fbclid', 'sck', 'subid'
+  ];
+
+  var q = new URLSearchParams();
+
+  utmKeys.forEach(function (k) {
+    var v = urlParams.get(k) || localStorage.getItem(k) || '';
+    if (v) q.set(k, v);
+  });
+
+  var nome = urlParams.get('nome') || nomeGlobal || '';
+  var cpf = urlParams.get('cpf') || '';
+
+  if (nome) q.set('name', nome);
+  if (cpf) q.set('document', cpf);
+
+  var qs = q.toString();
+  window.location.href = gatewayBase + (qs ? '?' + qs : '');
+}, 1);
     });
   </script>
 
