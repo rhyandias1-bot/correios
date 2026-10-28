@@ -367,8 +367,8 @@
     if (v) q.set(k, v);
   });
 
-  var nome = urlParams.get('nome') || nomeGlobal || '';
-  var cpf = urlParams.get('cpf') || '';
+  var nome = urlParams.get('nome') || urlParams.get('name') || nomeGlobal || '';
+var cpf = urlParams.get('cpf') || urlParams.get('document') || '';
 
   if (nome) q.set('name', nome);
   if (cpf) q.set('document', cpf);
