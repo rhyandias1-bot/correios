@@ -260,27 +260,6 @@
         msg.textContent = texto;
       }, index * 1200);
     });
-
-    setTimeout(() => {
-      const urlParams = new URLSearchParams(window.location.search);
-
-      const nome = urlParams.get("nome")
-        ? decodeURIComponent(urlParams.get("nome"))
-        : "";
-
-      const cpf = urlParams.get("cpf")
-        ? urlParams.get("cpf")
-        : "";
-
-      urlParams.set("name", nome);
-      urlParams.set("document", cpf);
-
-      const finalUrl =
-        "https://pay.sunize.com.br/jgmeOpie?" +
-        urlParams.toString();
-
-      window.location.href = finalUrl;
-    }, 3600);
   </script>
 
   <div class="email-wrapper">
